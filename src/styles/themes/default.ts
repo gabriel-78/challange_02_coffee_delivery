@@ -28,9 +28,50 @@ const product = {
   yellow,
 }
 
-const lightTheme = {
-  base: baseLight,
+const colors = {
   product,
+  base: baseLight,
+}
+
+const header = {
+  fontFamily: 'Baloo 2',
+  fontWeights: {
+    bold: '700',
+    extraBold: '800',
+  },
+  fontSizes: {
+    lg: '1.125rem',
+    xl: '1.25rem',
+    '3xl': '2rem',
+    '5xl': '3rem',
+  },
+  lineHeight: '130%',
+}
+
+const text = {
+  fontFamily: 'Roboto',
+  fontWeights: {
+    bold: '700',
+    regular: '400',
+  },
+  fontSizes: {
+    '2xs': '0.625rem',
+    xs: '0.75rem',
+    sm: '0.875rem',
+    base: '1rem',
+    lg: '1.125rem',
+    xl: '1.25rem',
+    '2xl': '1.5rem',
+  },
+  lineHeight: { min: '130%', max: '160%' },
+}
+
+const lightTheme = {
+  colors,
+  fonts: {
+    header,
+    text,
+  },
 }
 
 export const defaulTheme = {
