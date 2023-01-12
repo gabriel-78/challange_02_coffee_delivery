@@ -66,14 +66,10 @@ const text = {
   lineHeight: { min: '130%', max: '160%' },
 }
 
-const lightTheme = {
+export const lightTheme = {
   colors,
   fonts: {
     header,
     text,
   },
-}
-
-export const defaulTheme = {
-  primary: lightTheme,
 }
