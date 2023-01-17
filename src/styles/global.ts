@@ -10,8 +10,10 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         background: ${({ theme }) => theme.colors.base.background};
+        padding: 0 160px;
         -webkit-font-smoothing: antialiased;
     }
+    
     body, input-security, textarea, button{
         font-family: ${({ theme }) => theme.fonts.text.fontFamily}, sans-serif;
         font-weight: ${({ theme }) => theme.fonts.text.fontWeights.regular};

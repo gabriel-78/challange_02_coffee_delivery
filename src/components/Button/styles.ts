@@ -45,7 +45,8 @@ export const COLOR_VARIANTS = {
   base: css`
     background: ${({ theme }) => theme.colors.base.button};
 
-    span {
+    span,
+    svg {
       color: ${({ theme: { colors } }) => colors.product.purple.default};
     }
 
@@ -61,7 +62,8 @@ export const COLOR_VARIANTS = {
   light: css`
     background: ${({ theme }) => theme.colors.product.yellow.light};
 
-    span {
+    span,
+    svg {
       color: ${({ theme: { colors } }) => colors.product.yellow.dark};
     }
 
@@ -77,7 +79,8 @@ export const COLOR_VARIANTS = {
   purple: css`
     background: ${({ theme }) => theme.colors.product.purple.default};
 
-    span {
+    span,
+    svg {
       color: ${({ theme: { colors } }) => colors.base.card};
     }
 
@@ -93,7 +96,8 @@ export const COLOR_VARIANTS = {
   yellow: css`
     background: ${({ theme }) => theme.colors.product.yellow.default};
 
-    span {
+    span,
+    svg {
       color: ${({ theme: { colors } }) => colors.base.white};
     }
 
@@ -151,34 +155,15 @@ export const AnimationContainer = styled.div`
 export const StyledButton = styled.button<ButtonProps>`
   align-items: center;
   border-radius: 6px;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   transition: all 0.3s ease-in-out;
   position: relative;
 
-  /* ${({ quantityLabel }) =>
-    quantityLabel &&
-    css`
-      &::after {
-        align-items: center;
-        background: transparent;
-        border-radius: 9999px;
-        box-shadow: 0px 6px 6px -3px rgba(0, 0, 0, 0.2),
-          0px 10px 14px 1px rgba(0, 0, 0, 0.14),
-          0px 4px 18px 3px rgba(0, 0, 0, 0.12);
-        color: ${({ theme: { colors } }) => colors.base.white};
-        content: ' ' attr(data-quantity) '';
-        display: flex;
-        font-size: ${({ theme: { fonts } }) => fonts.text.fontSizes.xs};
-        font-weight: ${({ theme: { fonts } }) => fonts.text.fontWeights.bold};
-        height: 20px;
-        justify-content: center;
-        position: absolute;
-        right: -9px;
-        top: -7.5px;
-        width: 20px;
-      }
-    `} */
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   ${({ height }) => (height ? HEIGHT_VARIANTS[height] : '')}
   ${({ variant }) => (variant ? COLOR_VARIANTS[variant] : '')}

@@ -4,15 +4,17 @@ import { StyledButton, CircleMark } from './styles'
 import { ButtonProps } from './types'
 
 export const Button: FC<ButtonProps> = ({ ...props }) => {
-  const { isIconButton, label, quantityLabel } = props
+  const { icon, isIconButton, label, quantityLabel } = props
 
   const nodeRef = useRef(null)
 
   return (
     <StyledButton data-quantity={quantityLabel} {...props}>
+      {icon && icon}
       {label && !isIconButton && label?.length > 0 ? (
         <span>{label}</span>
       ) : null}
+
       <CSSTransition
         classNames="growing"
         in={!!quantityLabel}
@@ -28,6 +30,7 @@ export const Button: FC<ButtonProps> = ({ ...props }) => {
 
 Button.defaultProps = {
   height: 'medium',
+  icon: undefined,
   isIconButton: false,
   label: '',
   quantityLabel: '',
