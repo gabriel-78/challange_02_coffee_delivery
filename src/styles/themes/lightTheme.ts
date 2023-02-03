@@ -9,29 +9,29 @@ const baseLight = {
   text: '#574F4D',
   title: '#272221',
   white: '#FFFFFF',
-}
+} as const
 
 const purple = {
   dark: '#4B2995',
   default: '#8047f8',
   light: '#EBE5F9',
-}
+} as const
 
 const yellow = {
   dark: '#C47F17',
   default: '#DBAC2C',
   light: '#F1E9C9',
-}
+} as const
 
 const product = {
   purple,
   yellow,
-}
+} as const
 
 const colors = {
   product,
   base: baseLight,
-}
+} as const
 
 const header = {
   fontFamily: 'Baloo 2',
@@ -46,7 +46,7 @@ const header = {
     '5xl': '3rem',
   },
   lineHeight: '130%',
-}
+} as const
 
 const text = {
   fontFamily: 'Roboto',
@@ -64,7 +64,7 @@ const text = {
     '2xl': '1.5rem',
   },
   lineHeight: { min: '130%', max: '160%' },
-}
+} as const
 
 export const lightTheme = {
   colors,
@@ -72,4 +72,4 @@ export const lightTheme = {
     header,
     text,
   },
-}
+} as const
