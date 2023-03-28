@@ -18,7 +18,7 @@ export const ProductsListContainer = styled.div`
 export const ProductsList = styled.ul`
   display: grid;
   grid-gap: 32px;
-  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 `
 
 export const ProductsListTitle = styled.h2`

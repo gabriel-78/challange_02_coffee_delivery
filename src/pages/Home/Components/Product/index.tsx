@@ -1,10 +1,15 @@
 import { ShoppingCart } from 'phosphor-react'
 import { FC } from 'react'
 import { Button } from '../../../../components/Button'
+import { SelectCounter } from '../../../../components/Select'
 import * as S from './styles'
 import { ProductProps } from './types'
 
-export const Product: FC<ProductProps> = ({ product }) => {
+export const Product: FC<ProductProps> = ({
+  product,
+  quantity = undefined,
+  handleQuantity = () => {},
+}) => {
   return (
     <S.Container>
       <S.Header>
@@ -19,8 +24,15 @@ export const Product: FC<ProductProps> = ({ product }) => {
 
       <S.Footer>
         <S.Price>
-          R$ <strong>{product.price}</strong>
+          <strong>
+            {new Intl.NumberFormat('pt-Br', {
+              style: 'currency',
+              currency: 'BRL',
+            }).format(product.price)}
+          </strong>
         </S.Price>
+
+        <SelectCounter value={quantity} onChange={handleQuantity} />
 
         <Button
           height="medium"

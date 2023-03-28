@@ -13,7 +13,7 @@ export const Home = () => {
 
         <S.ProductsList>
           {coffesMock.map((coffe) => {
-            return <Product key={coffe.photo} product={coffe} />
+            return <Product key={coffe.id} product={coffe} />
           })}
         </S.ProductsList>
       </S.ProductsListContainer>

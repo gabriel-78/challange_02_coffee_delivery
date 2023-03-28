@@ -1,4 +1,5 @@
 export interface Product {
+  id: number
   name: string
   description: string
   price: number
@@ -8,4 +9,6 @@ export interface Product {
 
 export interface ProductProps {
   product: Product
+  quantity?: number
+  handleQuantity?: (newValue: number) => void
 }
