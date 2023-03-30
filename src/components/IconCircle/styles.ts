@@ -26,7 +26,10 @@ export const Container = styled.div<{
   border-radius: 9999px;
   display: flex;
   justify-content: center;
-  padding: 8px;
+  min-width: 36px;
+  min-height: 36px;
+  max-width: 36px;
+  max-height: 36px;
 
   svg {
     color: ${({ theme: { colors } }) => colors.base.background};
