@@ -49,3 +49,15 @@ export const BoxTitle = styled.h2`
   font-size: ${({ theme: { fonts } }) => fonts.header.fontSizes.lg};
   font-weight: ${({ theme: { fonts } }) => fonts.header.fontWeights.extraBold};
 `
+
+export const AddresFormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+`
+export const AddresFormBox = styled.div`
+  display: flex;
+  gap: 12px;
+  width: 100%;
+`
