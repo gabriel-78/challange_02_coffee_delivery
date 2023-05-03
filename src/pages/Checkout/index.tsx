@@ -1,6 +1,7 @@
 import { CurrencyDollar, MapPinLine } from 'phosphor-react'
 import { useTheme } from 'styled-components'
 import * as S from './styles'
+import { Card } from '../../components/Card'
 
 export const Checkout = () => {
   const { colors } = useTheme()
@@ -9,7 +10,7 @@ export const Checkout = () => {
     <S.Container>
       <S.BoxTitle>Complete seu pedido</S.BoxTitle>
 
-      <S.Box>
+      <Card size="medium" variant="default" width="100%">
         <S.TextContainer>
           <MapPinLine weight="regular" size={22} />
 
@@ -19,9 +20,9 @@ export const Checkout = () => {
             <span>Informe o endereço onde deseja receber seu pedido</span>
           </S.TextBox>
         </S.TextContainer>
-      </S.Box>
+      </Card>
 
-      <S.Box>
+      <Card size="medium" variant="default" width="100%">
         <S.TextContainer>
           <CurrencyDollar
             weight="regular"
@@ -37,7 +38,7 @@ export const Checkout = () => {
             </span>
           </S.TextBox>
         </S.TextContainer>
-      </S.Box>
+      </Card>
     </S.Container>
   )
 }
