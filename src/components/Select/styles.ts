@@ -9,7 +9,7 @@ export const Container = styled.div`
   font-size: ${({ theme: { fonts } }) => fonts.text.fontSizes.base};
   gap: 8px;
   line-height: ${({ theme: { fonts } }) => fonts.text.lineHeight.min};
-  padding: 10px;
+  padding: 9px;
   text-align: center;
 `
 

@@ -2,8 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  gap: 32px;
   height: 100vh;
   width: 100%;
 `
@@ -11,13 +10,8 @@ export const Container = styled.div`
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 40px;
-  gap: 32px;
-  width: 640px;
-  height: 372px;
-  background: ${({ theme: { colors } }) => colors.base.card};
-  border-radius: 6px;
+  gap: 15px;
+  width: 100%;
 `
 
 export const TextContainer = styled.div`
