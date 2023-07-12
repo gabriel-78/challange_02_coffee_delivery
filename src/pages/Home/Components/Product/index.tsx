@@ -6,10 +6,15 @@ import * as S from './styles'
 import { ProductProps } from './types'
 
 export const Product: FC<ProductProps> = ({
+  list,
   product,
-  quantity = undefined,
-  handleQuantity = () => {},
+  quantity,
+  handleProduct = (productId: string, newQuantity: number) => {},
 }) => {
+  const handleQuantity = (newQuantity: number) => {
+    handleProduct(product.id, newQuantity)
+  }
+
   return (
     <S.Container>
       <S.Header>
@@ -20,9 +25,7 @@ export const Product: FC<ProductProps> = ({
         <S.Title>{product.name}</S.Title>
 
         <S.Description>{product.description}</S.Description>
-      </S.Main>
 
-      <S.Footer>
         <S.Price>
           <strong>
             {new Intl.NumberFormat('pt-Br', {
@@ -31,7 +34,9 @@ export const Product: FC<ProductProps> = ({
             }).format(product.price)}
           </strong>
         </S.Price>
+      </S.Main>
 
+      <S.Footer>
         <SelectCounter value={quantity} onChange={handleQuantity} />
 
         <Button

@@ -31,7 +31,7 @@ export const Footer = styled.div`
   display: flex;
   flex: 1;
   gap: 8px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 0px 12px 16px;
 `
 

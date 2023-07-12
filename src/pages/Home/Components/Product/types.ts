@@ -1,5 +1,7 @@
-export interface Product {
-  id: number
+import { ShoppingItem } from '../..'
+
+export interface ProductEntity {
+  id: string
   name: string
   description: string
   price: number
@@ -8,7 +10,8 @@ export interface Product {
 }
 
 export interface ProductProps {
-  product: Product
-  quantity?: number
-  handleQuantity?: (newValue: number) => void
+  list: ShoppingItem[]
+  product: ProductEntity
+  quantity: number
+  handleProduct?: (productId: string, newQuantity: number) => void
 }

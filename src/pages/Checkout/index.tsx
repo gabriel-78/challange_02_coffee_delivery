@@ -1,14 +1,15 @@
-import { CurrencyDollar, MapPinLine } from "phosphor-react";
-import { useTheme } from "styled-components";
-import * as S from "./styles";
-import { Card } from "../../components/Card";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
-import { BuyInfo } from "./components/BuyInfo";
-import { CoffeBought } from "./components/CoffeeBought";
+import { CurrencyDollar, MapPinLine } from 'phosphor-react'
+import { useTheme } from 'styled-components'
+import * as S from './styles'
+import { Card } from '../../components/Card'
+import { Input } from '../../components/Input'
+import { Button } from '../../components/Button'
+import { BuyInfo } from './components/BuyInfo'
+import { CoffeBought } from './components/CoffeeBought'
+import traditionalExpressImg from '../../assets/traditionalExpress.svg'
 
 export const Checkout = () => {
-  const { colors } = useTheme();
+  const { colors } = useTheme()
 
   return (
     <S.Container>
@@ -46,21 +47,44 @@ export const Checkout = () => {
         </Card>
 
         <Card size="medium" variant="default" width="100%">
-          <S.TextContainer>
-            <CurrencyDollar
-              weight="regular"
-              size={22}
-              color={colors.product.purple.default}
-            />
+          <>
+            <S.TextContainer>
+              <CurrencyDollar
+                weight="regular"
+                size={22}
+                color={colors.product.purple.default}
+              />
 
-            <S.TextBox>
-              <h3>Pagamento</h3>
+              <S.TextBox>
+                <h3>Pagamento</h3>
 
-              <span>
-                O pagamento é feito na entrega. Escolha a forma que deseja pagar
-              </span>
-            </S.TextBox>
-          </S.TextContainer>
+                <span>
+                  O pagamento é feito na entrega. Escolha a forma que deseja
+                  pagar
+                </span>
+              </S.TextBox>
+            </S.TextContainer>
+
+            <S.PaymentOptionBox>
+              <S.PaymentOption>
+                <CurrencyDollar weight="regular" />
+
+                <span>Cartão de crédito</span>
+              </S.PaymentOption>
+
+              <S.PaymentOption>
+                <CurrencyDollar weight="regular" />
+
+                <span>Cartão de débito</span>
+              </S.PaymentOption>
+
+              <S.PaymentOption>
+                <CurrencyDollar weight="regular" />
+
+                <span>Dinheiro</span>
+              </S.PaymentOption>
+            </S.PaymentOptionBox>
+          </>
         </Card>
       </S.Box>
 
@@ -69,7 +93,14 @@ export const Checkout = () => {
 
         <Card size="medium" variant="curve" width="100%">
           <>
-            <CoffeBought quantity={2} />
+            <S.ProductList>
+              <CoffeBought
+                quantity={2}
+                imageUrl={traditionalExpressImg}
+                name="Expresso Tradicional"
+                price={99.9}
+              />
+            </S.ProductList>
 
             <BuyInfo rateDelivery={3.5} totalProductPrice={29.7} />
 
@@ -78,5 +109,5 @@ export const Checkout = () => {
         </Card>
       </S.Box>
     </S.Container>
-  );
-};
+  )
+}

@@ -1,21 +1,28 @@
 import { FC } from 'react'
 import * as S from './styles'
-import traditionalExpressImg from '../../../../assets/traditionalExpress.svg'
 import { Button } from '../../../../components/Button'
 import { Trash } from 'phosphor-react'
 import { SelectCounter } from '../../../../components/Select'
 
 interface CoffeBoughtProps {
   quantity: number
+  imageUrl: string
+  name: string
+  price: number
 }
 
-export const CoffeBought: FC<CoffeBoughtProps> = ({ quantity }) => {
+export const CoffeBought: FC<CoffeBoughtProps> = ({
+  quantity,
+  imageUrl,
+  name,
+  price,
+}) => {
   return (
     <S.Container>
-      <S.Image src={traditionalExpressImg} alt="" />
+      <S.Image src={imageUrl} alt="" />
 
       <S.Box>
-        <span>Expresso Tradicional</span>
+        <span>{name}</span>
 
         <S.BoxAux>
           <SelectCounter value={quantity} />
@@ -28,7 +35,7 @@ export const CoffeBought: FC<CoffeBoughtProps> = ({ quantity }) => {
         {new Intl.NumberFormat('pt-Br', {
           style: 'currency',
           currency: 'BRL',
-        }).format(quantity * 99.9)}
+        }).format(quantity * price)}
       </strong>
     </S.Container>
   )

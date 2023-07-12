@@ -55,3 +55,41 @@ export const AddresFormBox = styled.div`
   gap: 12px;
   width: 100%;
 `
+
+export const ProductList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+`
+
+export const PaymentOptionBox = styled.div`
+  display: flex;
+  gap: 12px;
+  width: 100%;
+`
+
+export const PaymentOption = styled.div`
+  background: ${({ theme: { colors } }) => colors.base.button};
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  min-width: 178px;
+  padding: 16px;
+  border-radius: 6px;
+
+  & > svg {
+    color: ${({ theme: { colors } }) => colors.product.purple.default};
+    font-size: 16px;
+  }
+
+  span {
+    color: ${({ theme: { colors } }) => colors.base.text};
+    font-size: ${({ theme: { fonts } }) => fonts.text.fontSizes.sm};
+    font-weight: ${({ theme: { fonts } }) => fonts.text.fontWeights.regular};
+    line-height: ${({ theme: { fonts } }) => fonts.text.lineHeight.max};
+    text-transform: uppercase;
+  }
+`

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ export const Container = styled.div`
     font-weight: ${({ theme: { fonts } }) => fonts.text.fontWeights.bold};
     line-height: ${({ theme: { fonts } }) => fonts.text.lineHeight.min};
   }
-`;
+`
 
 export const Box = styled.div`
   display: flex;
@@ -27,17 +27,17 @@ export const Box = styled.div`
     line-height: ${({ theme }) => theme.fonts.text.lineHeight.min};
     color: ${({ theme }) => theme.colors.base.subTitle};
   }
-`;
+`
 
 export const BoxAux = styled.div`
   display: flex;
   gap: 8px;
   width: 100%;
   align-items: center;
-`;
+`
 
 export const Image = styled.img`
   height: 64px;
   object-fit: cover;
   width: 64px;
-`;
+`
