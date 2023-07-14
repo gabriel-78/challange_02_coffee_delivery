@@ -6,10 +6,38 @@ import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { BuyInfo } from './components/BuyInfo'
 import { CoffeBought } from './components/CoffeeBought'
-import traditionalExpressImg from '../../assets/traditionalExpress.svg'
+import { useContext, useEffect, useState } from 'react'
+import { ShoppingListContext } from '../../context/ShoppingListContext'
+import { coffesMock } from '../../mock/coffes'
+import { ProductEntity } from '../Home/Components/Product/types'
+import { useNavigate } from 'react-router-dom'
 
 export const Checkout = () => {
   const { colors } = useTheme()
+
+  const navigate = useNavigate()
+
+  const [selectedProducts, setSelectedProducts] = useState<ProductEntity[]>([])
+
+  const { shoppingList, handleProductQuantity } =
+    useContext(ShoppingListContext)
+
+  const onRemoveShoppingItem = (productId: string) => {
+    setSelectedProducts((state) => state.filter(({ id }) => id !== productId))
+    handleProductQuantity(productId, 0)
+  }
+
+  useEffect(() => {
+    const selectedItemsIds = shoppingList
+      .filter(({ quantity }) => quantity > 0)
+      .map(({ id }) => {
+        return id
+      })
+
+    setSelectedProducts(
+      coffesMock.filter(({ id }) => selectedItemsIds.includes(id)),
+    )
+  }, [])
 
   return (
     <S.Container>
@@ -93,18 +121,60 @@ export const Checkout = () => {
 
         <Card size="medium" variant="curve" width="100%">
           <>
-            <S.ProductList>
-              <CoffeBought
-                quantity={2}
-                imageUrl={traditionalExpressImg}
-                name="Expresso Tradicional"
-                price={99.9}
-              />
-            </S.ProductList>
+            {selectedProducts.length > 0 ? (
+              <S.ProductList>
+                {selectedProducts.map((coffe) => {
+                  const shoppingItem = shoppingList.find(
+                    (shopping) => coffe.id === shopping.id,
+                  )
 
-            <BuyInfo rateDelivery={3.5} totalProductPrice={29.7} />
+                  return (
+                    <CoffeBought
+                      key={coffe.id}
+                      quantity={shoppingItem?.quantity || 0}
+                      imageUrl={coffe.photo}
+                      name={coffe.name}
+                      price={coffe.price}
+                      handleQuantity={(event) =>
+                        handleProductQuantity(coffe.id, event)
+                      }
+                      onRemove={() => onRemoveShoppingItem(coffe.id)}
+                    />
+                  )
+                })}
+              </S.ProductList>
+            ) : (
+              <span onClick={() => navigate(-1)}>
+                Deseja escolher algum outro produto?
+              </span>
+            )}
 
-            <Button label="CONFIRMAR PEDIDO" />
+            <BuyInfo
+              rateDelivery={3.5}
+              totalProductPrice={selectedProducts.reduce(
+                (accumulator, product) => {
+                  const shoppingItem = shoppingList.find(
+                    (shopping) => product.id === shopping.id,
+                  )
+
+                  return (
+                    accumulator + (shoppingItem?.quantity || 0) * product.price
+                  )
+                },
+                0,
+              )}
+            />
+
+            <Button
+              label="CONFIRMAR PEDIDO"
+              disabled={
+                shoppingList.reduce(
+                  (accumulator, currentValue) =>
+                    accumulator + currentValue.quantity,
+                  0,
+                ) === 0
+              }
+            />
           </>
         </Card>
       </S.Box>

@@ -97,7 +97,7 @@ export const coffesMock : ProductEntity[] = [
     photo: mocaccinoImg
   },
   {
-    id: "53e07ca3-0362-4166-a297-dc6f0f9ce3db",
+    id: "60e07ca3-0362-4166-a297-dc6f0f9ce3db",
     description: "Bebida feita com chocolate dissolvido no leite quente e café",
     name: "Chocolate Quente",
     price: 9.90,

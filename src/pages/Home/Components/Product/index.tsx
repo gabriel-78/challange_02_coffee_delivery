@@ -3,13 +3,13 @@ import { FC } from 'react'
 import { Button } from '../../../../components/Button'
 import { SelectCounter } from '../../../../components/Select'
 import * as S from './styles'
-import { ProductProps } from './types'
+import { ProductCardProps } from './types'
 
-export const Product: FC<ProductProps> = ({
-  list,
+export const ProductCard: FC<ProductCardProps> = ({
   product,
   quantity,
   handleProduct = (productId: string, newQuantity: number) => {},
+  onBuy,
 }) => {
   const handleQuantity = (newQuantity: number) => {
     handleProduct(product.id, newQuantity)
@@ -43,6 +43,7 @@ export const Product: FC<ProductProps> = ({
           height="medium"
           variant="purple"
           icon={<ShoppingCart weight="fill" size={22} />}
+          onClick={onBuy}
         />
       </S.Footer>
     </S.Container>

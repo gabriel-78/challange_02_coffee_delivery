@@ -9,6 +9,8 @@ interface CoffeBoughtProps {
   imageUrl: string
   name: string
   price: number
+  handleQuantity: (newQuantity: number) => void
+  onRemove: () => void
 }
 
 export const CoffeBought: FC<CoffeBoughtProps> = ({
@@ -16,6 +18,8 @@ export const CoffeBought: FC<CoffeBoughtProps> = ({
   imageUrl,
   name,
   price,
+  handleQuantity,
+  onRemove,
 }) => {
   return (
     <S.Container>
@@ -25,9 +29,14 @@ export const CoffeBought: FC<CoffeBoughtProps> = ({
         <span>{name}</span>
 
         <S.BoxAux>
-          <SelectCounter value={quantity} />
+          <SelectCounter value={quantity} onChange={handleQuantity} />
 
-          <Button label="Remover" icon={<Trash />} variant="base" />
+          <Button
+            label="Remover"
+            icon={<Trash />}
+            variant="base"
+            onClick={onRemove}
+          />
         </S.BoxAux>
       </S.Box>
 
@@ -35,7 +44,7 @@ export const CoffeBought: FC<CoffeBoughtProps> = ({
         {new Intl.NumberFormat('pt-Br', {
           style: 'currency',
           currency: 'BRL',
-        }).format(quantity * price)}
+        }).format(price)}
       </strong>
     </S.Container>
   )

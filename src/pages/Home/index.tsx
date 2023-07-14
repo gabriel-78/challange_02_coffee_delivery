@@ -1,8 +1,10 @@
 import * as S from './styles'
 import { coffesMock } from '../../mock/coffes'
-import { Product } from './Components/Product'
+import { ProductCard } from './Components/Product'
 import { Banner } from './Components/Banner'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
+import { ShoppingListContext } from '../../context/ShoppingListContext'
+import { useNavigate } from 'react-router-dom'
 
 export interface ShoppingItem {
   id: string
@@ -10,20 +12,12 @@ export interface ShoppingItem {
 }
 
 export const Home = () => {
-  const [shoppingList, setShoppingList] = useState<ShoppingItem[]>([])
-
-  const handleProduct = (productId: string, newQuantity: number) => {
-    setShoppingList((state) =>
-      state.map((selectedProduct) => {
-        return productId === selectedProduct.id
-          ? { ...selectedProduct, quantity: newQuantity }
-          : selectedProduct
-      }),
-    )
-  }
+  const navigate = useNavigate()
+  const { shoppingList, loadShoppingList, handleProductQuantity } =
+    useContext(ShoppingListContext)
 
   useEffect(() => {
-    setShoppingList(
+    loadShoppingList(
       coffesMock.map(({ id }) => {
         return { id, quantity: 0 } as ShoppingItem
       }),
@@ -40,15 +34,15 @@ export const Home = () => {
         <S.ProductsList>
           {coffesMock.map((coffe) => {
             return (
-              <Product
-                list={shoppingList}
+              <ProductCard
                 key={coffe.id}
-                handleProduct={handleProduct}
+                handleProduct={handleProductQuantity}
                 product={coffe}
                 quantity={
                   shoppingList.find((item) => item.id === coffe.id)?.quantity ||
                   0
                 }
+                onBuy={() => navigate('checkout')}
               />
             )
           })}
