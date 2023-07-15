@@ -55,7 +55,7 @@ export const COLOR_VARIANTS = {
       color: ${({ theme }) => theme.colors.base.button};
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: ${({ theme }) => theme.colors.base.hover};
     }
   `,
@@ -72,7 +72,7 @@ export const COLOR_VARIANTS = {
       color: ${({ theme: { colors } }) => colors.product.yellow.light};
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: ${({ theme }) => theme.colors.product.yellow.default};
     }
   `,
@@ -89,7 +89,7 @@ export const COLOR_VARIANTS = {
       color: ${({ theme: { colors } }) => colors.product.purple.default};
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: ${({ theme }) => theme.colors.product.purple.dark};
     }
   `,
@@ -106,7 +106,7 @@ export const COLOR_VARIANTS = {
       color: ${({ theme: { colors } }) => colors.product.yellow.default};
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: ${({ theme }) => theme.colors.product.yellow.dark};
     }
   `,
@@ -163,6 +163,8 @@ export const StyledButton = styled.button<ButtonProps>`
 
   &:disabled {
     cursor: not-allowed;
+
+    background: ${({ theme }) => theme.colors.base.button};
   }
 
   ${({ height }) => (height ? HEIGHT_VARIANTS[height] : '')}
