@@ -14,6 +14,21 @@ export const Container = styled.div`
     font-weight: ${({ theme: { fonts } }) => fonts.text.fontWeights.bold};
     line-height: ${({ theme: { fonts } }) => fonts.text.lineHeight.min};
   }
+
+  @media (max-width: 786px) {
+    align-items: center;
+    flex-direction: column;
+
+    & > & :nth-child(1) {
+      order: 1;
+    }
+    & :nth-child(2) {
+      order: 3;
+    }
+    & :nth-child(3) {
+      order: 2;
+    }
+  }
 `
 
 export const Box = styled.div`
@@ -27,6 +42,10 @@ export const Box = styled.div`
     line-height: ${({ theme }) => theme.fonts.text.lineHeight.min};
     color: ${({ theme }) => theme.colors.base.subTitle};
   }
+
+  @media (max-width: 786px) {
+    align-items: center;
+  }
 `
 
 export const BoxAux = styled.div`
@@ -34,6 +53,11 @@ export const BoxAux = styled.div`
   gap: 8px;
   width: 100%;
   align-items: center;
+
+  @media (max-width: 786px) {
+    padding-top: 8px;
+    justify-content: space-evenly;
+  }
 `
 
 export const Image = styled.img`

@@ -5,6 +5,11 @@ export const Container = styled.div`
   gap: 32px;
   height: 100vh;
   width: 100%;
+  overflow-y: auto;
+
+  @media (max-width: 786px) {
+    flex-direction: column;
+  }
 `
 
 export const Box = styled.div`
@@ -61,14 +66,18 @@ export const ProductList = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  max-height: 300px;
-  overflow-y: auto;
+
+  @media (min-width: 786px) {
+    max-height: 300px;
+    overflow-y: auto;
+  }
 `
 
 export const PaymentOptionBox = styled.div`
   display: flex;
   gap: 12px;
   width: 100%;
+  overflow: auto;
 `
 
 export const PaymentOption = styled.div`
