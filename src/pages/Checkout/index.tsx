@@ -11,6 +11,7 @@ import { ShoppingListContext } from '../../context/ShoppingListContext'
 import { coffesMock } from '../../mock/coffes'
 import { ProductEntity } from '../Home/Components/Product/types'
 import { useNavigate } from 'react-router-dom'
+import { PaymentOptions } from './components/PaymentOptions'
 
 export const Checkout = () => {
   const { colors } = useTheme()
@@ -93,25 +94,7 @@ export const Checkout = () => {
               </S.TextBox>
             </S.TextContainer>
 
-            <S.PaymentOptionBox>
-              <S.PaymentOption>
-                <CurrencyDollar weight="regular" />
-
-                <span>Cartão de crédito</span>
-              </S.PaymentOption>
-
-              <S.PaymentOption>
-                <CurrencyDollar weight="regular" />
-
-                <span>Cartão de débito</span>
-              </S.PaymentOption>
-
-              <S.PaymentOption>
-                <CurrencyDollar weight="regular" />
-
-                <span>Dinheiro</span>
-              </S.PaymentOption>
-            </S.PaymentOptionBox>
+            <PaymentOptions value="creditCard" onChange={() => {}} />
           </>
         </Card>
       </S.Box>
