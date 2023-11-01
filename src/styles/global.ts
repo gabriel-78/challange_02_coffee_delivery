@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         background: ${({ theme }) => theme.colors.base.background};
-        padding: 0 160px;
+        padding: 0 2rem;
         -webkit-font-smoothing: antialiased;
     }
     

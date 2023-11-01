@@ -4,6 +4,7 @@ import NavBar from './components/Navbar'
 import { Router } from './router'
 import { GlobalStyle } from './styles/global'
 import { lightTheme } from './styles/themes/lightTheme'
+import { ShoppingListContextProvider } from './context/ShoppingListContext'
 
 export function App() {
   return (
@@ -11,9 +12,11 @@ export function App() {
       <BrowserRouter>
         <GlobalStyle />
 
-        <NavBar />
+        <ShoppingListContextProvider>
+          <NavBar />
 
-        <Router />
+          <Router />
+        </ShoppingListContextProvider>
       </BrowserRouter>
     </ThemeProvider>
   )

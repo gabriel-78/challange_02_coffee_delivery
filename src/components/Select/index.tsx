@@ -3,16 +3,14 @@ import { Minus, Plus } from 'phosphor-react'
 import { FC } from 'react'
 
 interface SelectCounterProps {
-  value?: number
-  onChange?: (newValue: number) => void
+  value: number
+  onChange: (newValue: number) => void
 }
 
 export const SelectCounter: FC<SelectCounterProps> = ({ value, onChange }) => {
   const handleValue = (isIncrementing = true) => {
-    if (onChange && value) {
-      if (isIncrementing) onChange(value + 1)
-      else onChange(value - 1)
-    }
+    if (isIncrementing) onChange(value + 1)
+    else onChange(value <= 0 ? 0 : value - 1)
   }
 
   return (
@@ -31,6 +29,5 @@ export const SelectCounter: FC<SelectCounterProps> = ({ value, onChange }) => {
 }
 
 SelectCounter.defaultProps = {
-  value: 0,
   onChange: () => {},
 }

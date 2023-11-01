@@ -1,5 +1,5 @@
-export interface Product {
-  id: number
+export interface ProductEntity {
+  id: string
   name: string
   description: string
   price: number
@@ -7,8 +7,9 @@ export interface Product {
   photo: string
 }
 
-export interface ProductProps {
-  product: Product
-  quantity?: number
-  handleQuantity?: (newValue: number) => void
+export interface ProductCardProps {
+  product: ProductEntity
+  quantity: number
+  handleProduct?: (productId: string, newQuantity: number) => void
+  onBuy?: () => void
 }
