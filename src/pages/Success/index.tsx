@@ -2,8 +2,15 @@ import * as S from './styles'
 import banner from '../../assets/successBanner.svg'
 import IconCircle from '../../components/IconCircle'
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useLocation } from 'react-router-dom'
+import {
+  OPTIONS_PAYMENT_LABEL,
+  PaymentOption,
+} from '../Checkout/components/PaymentOptions'
 
 export const Success = () => {
+  const { state } = useLocation()
+
   return (
     <S.Container>
       <S.Header>
@@ -24,8 +31,12 @@ export const Success = () => {
 
             <S.InformationTextBox>
               Entrega em{' '}
-              <strong>Rua João Daniel Martinelli, 102 Farrapos</strong>- Porto
-              Alegre, RS
+              <strong>
+                {state ? state?.street : 'Não inserido'},
+                {state ? state?.number : 'Não inserido'}{' '}
+                {state ? state?.district : 'Não inserido'}
+              </strong>
+              - {state ? `${state?.city}, ${state?.uf}` : 'Não inserido'}
             </S.InformationTextBox>
           </li>
           <li>
@@ -47,7 +58,11 @@ export const Success = () => {
 
             <S.InformationTextBox>
               <span>Pagamento na entrega</span>
-              <strong>Cartão de débito</strong>
+              <strong>
+                {state
+                  ? OPTIONS_PAYMENT_LABEL[state?.paymentType as PaymentOption]
+                  : 'Não inserido'}
+              </strong>
             </S.InformationTextBox>
           </li>
         </S.InformationList>

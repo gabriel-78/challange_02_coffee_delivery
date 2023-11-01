@@ -7,13 +7,15 @@ export const OPTIONS_PAYMENT = {
   money: 'money',
 } as const
 
-const OPTIONS_PAYMENT_LABEL = {
+export const OPTIONS_PAYMENT_LABEL = {
   [OPTIONS_PAYMENT.creditCard]: 'Cartão de crédito',
   [OPTIONS_PAYMENT.debitCard]: 'Cartão de débito',
   [OPTIONS_PAYMENT.money]: 'Dinheiro',
 } as const
 
-const renderIcon = (type: keyof typeof OPTIONS_PAYMENT) => {
+export type PaymentOption = keyof typeof OPTIONS_PAYMENT
+
+const renderIcon = (type: PaymentOption) => {
   switch (type) {
     case OPTIONS_PAYMENT.creditCard:
       return <CreditCard weight="regular" />
@@ -27,7 +29,7 @@ const renderIcon = (type: keyof typeof OPTIONS_PAYMENT) => {
 }
 
 interface PaymentOptionsProps {
-  value?: keyof typeof OPTIONS_PAYMENT
+  value?: PaymentOption
   onChange: (value: string) => void
 }
 

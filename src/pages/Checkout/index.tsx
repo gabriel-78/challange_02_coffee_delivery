@@ -27,7 +27,7 @@ const newPurchaseFormSchema = z.object({
   complement: z.string().optional(),
 })
 
-type NewPurchaseFormInputs = z.infer<typeof newPurchaseFormSchema>
+export type NewPurchaseFormInputs = z.infer<typeof newPurchaseFormSchema>
 
 export const Checkout = () => {
   const { colors } = useTheme()
@@ -40,7 +40,7 @@ export const Checkout = () => {
 
   const [selectedProducts, setSelectedProducts] = useState<ProductEntity[]>([])
 
-  const { shoppingList, handleProductQuantity } =
+  const { shoppingList, handleProductQuantity, cleanProductsList } =
     useContext(ShoppingListContext)
 
   const onRemoveShoppingItem = (productId: string) => {
@@ -49,6 +49,7 @@ export const Checkout = () => {
   }
 
   const onSubmitNewPurchase = (formData: NewPurchaseFormInputs) => {
+    cleanProductsList()
     navigate('/success', { state: { ...formData } as NewPurchaseFormInputs })
   }
 
