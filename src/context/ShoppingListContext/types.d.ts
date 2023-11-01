@@ -10,6 +10,7 @@ export interface ShoppingListContextProps {
   addProducts: (products: ShoppingItem[]) => void
   handleProductQuantity: (productId: string, newQuantity: number) => void
   loadShoppingList: (products: ShoppingItem[]) => void
+  cleanProductsList: () => void
 }
 
 export interface ShoppingListContextProviderProps {

@@ -44,7 +44,7 @@ export const coffesMock : ProductEntity[] = [
     id: "b562475f-fe18-43f7-a2f2-5dd108b4ded8",
     description: "Café expresso tradicional com espuma cremosa",
     name: "Expresso Cremoso",
-    price: 119.90,
+    price: 9.90,
     type: [COFFE_TYPES.tradicional],
     photo: creamyExpressImg
   },

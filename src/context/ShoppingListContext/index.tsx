@@ -20,6 +20,10 @@ export const ShoppingListContextProvider = ({
     setShoppingList((state) => [...state, ...products])
   }
 
+  const cleanProductsList = () => {
+    setShoppingList([])
+  }
+
   const handleProductQuantity = (productId: string, newQuantity: number) => {
     setShoppingList((state) =>
       state.map((shoppingItem) => {
@@ -39,6 +43,7 @@ export const ShoppingListContextProvider = ({
         addProducts,
         handleProductQuantity,
         loadShoppingList,
+        cleanProductsList,
       }}
     >
       {children}
