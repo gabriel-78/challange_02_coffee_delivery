@@ -12,9 +12,29 @@ import { coffesMock } from '../../mock/coffes'
 import { ProductEntity } from '../Home/Components/Product/types'
 import { useNavigate } from 'react-router-dom'
 import { PaymentOptions } from './components/PaymentOptions'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Controller, useForm } from 'react-hook-form'
+
+const newPurchaseFormSchema = z.object({
+  cep: z.string(),
+  street: z.string(),
+  number: z.string(),
+  district: z.string(),
+  city: z.string(),
+  uf: z.string(),
+  paymentType: z.enum(['creditCard', 'debitCard', 'money']),
+  complement: z.string().optional(),
+})
+
+type NewPurchaseFormInputs = z.infer<typeof newPurchaseFormSchema>
 
 export const Checkout = () => {
   const { colors } = useTheme()
+
+  const { control, handleSubmit } = useForm<NewPurchaseFormInputs>({
+    resolver: zodResolver(newPurchaseFormSchema),
+  })
 
   const navigate = useNavigate()
 
@@ -26,6 +46,10 @@ export const Checkout = () => {
   const onRemoveShoppingItem = (productId: string) => {
     setSelectedProducts((state) => state.filter(({ id }) => id !== productId))
     handleProductQuantity(productId, 0)
+  }
+
+  const onSubmitNewPurchase = (formData: NewPurchaseFormInputs) => {
+    navigate('/success', { state: { ...formData } as NewPurchaseFormInputs })
   }
 
   useEffect(() => {
@@ -41,7 +65,9 @@ export const Checkout = () => {
   }, [])
 
   return (
-    <S.Container>
+    <S.Container
+      onSubmit={handleSubmit(onSubmitNewPurchase, (w) => console.log(w))}
+    >
       <S.Box>
         <S.BoxTitle>Complete seu pedido</S.BoxTitle>
 
@@ -58,18 +84,80 @@ export const Checkout = () => {
             </S.TextContainer>
 
             <S.AddresFormContainer>
-              <Input placeholder="CEP" width="30%" />
-              <Input placeholder="Rua" />
+              <Controller
+                control={control}
+                name="cep"
+                render={({ field }) => {
+                  return (
+                    <Input
+                      type="text"
+                      placeholder="CEP"
+                      width="30%"
+                      {...field}
+                    />
+                  )
+                }}
+              />
+
+              <Controller
+                control={control}
+                name="street"
+                render={({ field }) => {
+                  return <Input {...field} placeholder="Rua" />
+                }}
+              />
 
               <S.AddresFormBox>
-                <Input placeholder="Número" />
-                <Input placeholder="Complemento" width="100%" isMandatory />
+                <Controller
+                  control={control}
+                  name="number"
+                  render={({ field }) => {
+                    return <Input {...field} placeholder="Número" />
+                  }}
+                />
+
+                <Controller
+                  control={control}
+                  name="complement"
+                  render={({ field }) => {
+                    return (
+                      <Input
+                        {...field}
+                        placeholder="Complemento"
+                        width="100%"
+                        isMandatory
+                      />
+                    )
+                  }}
+                />
               </S.AddresFormBox>
 
               <S.AddresFormBox>
-                <Input placeholder="Bairro" width="20%" />
-                <Input placeholder="Cidade" width="100%" />
-                <Input placeholder="UF" width="15%" />
+                <Controller
+                  control={control}
+                  name="district"
+                  render={({ field }) => {
+                    return <Input {...field} placeholder="Bairro" width="20%" />
+                  }}
+                />
+
+                <Controller
+                  control={control}
+                  name="city"
+                  render={({ field }) => {
+                    return (
+                      <Input {...field} placeholder="Cidade" width="100%" />
+                    )
+                  }}
+                />
+
+                <Controller
+                  control={control}
+                  name="uf"
+                  render={({ field }) => {
+                    return <Input {...field} placeholder="UF" width="15%" />
+                  }}
+                />
               </S.AddresFormBox>
             </S.AddresFormContainer>
           </>
@@ -94,7 +182,13 @@ export const Checkout = () => {
               </S.TextBox>
             </S.TextContainer>
 
-            <PaymentOptions value="creditCard" onChange={() => {}} />
+            <Controller
+              control={control}
+              name="paymentType"
+              render={({ field: { value, onChange } }) => (
+                <PaymentOptions value={value} onChange={onChange} />
+              )}
+            />
           </>
         </Card>
       </S.Box>
@@ -150,6 +244,7 @@ export const Checkout = () => {
 
             <Button
               label="CONFIRMAR PEDIDO"
+              type="submit"
               disabled={
                 shoppingList.reduce(
                   (accumulator, currentValue) =>

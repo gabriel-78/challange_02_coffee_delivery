@@ -27,7 +27,7 @@ const renderIcon = (type: keyof typeof OPTIONS_PAYMENT) => {
 }
 
 interface PaymentOptionsProps {
-  value: keyof typeof OPTIONS_PAYMENT
+  value?: keyof typeof OPTIONS_PAYMENT
   onChange: (value: string) => void
 }
 
